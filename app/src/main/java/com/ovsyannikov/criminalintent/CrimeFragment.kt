@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders
 import java.util.*
 import androidx.lifecycle.Observer
 import java.sql.Date
+import java.text.SimpleDateFormat
 
 private const val ARG_CRIME_ID = "crime_id"
 private const val TAG = "CrimeFragment"
@@ -114,7 +115,8 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
 
     private fun updateUI() {
         titleField.setText(crime.title)
-        dateButton.text = crime.date.toString()
+        val simpleDateFormat = SimpleDateFormat("EE, MMM, dd, yyyy", Locale.US)
+        dateButton.text = simpleDateFormat.format(this.crime.date).toString()
         solvedCheckBox.apply {
             isChecked = crime.isSolved
             jumpDrawablesToCurrentState()
